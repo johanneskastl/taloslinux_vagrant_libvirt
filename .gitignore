@@ -3,3 +3,8 @@
 #
 .vagrant
 Vagrantfile.1
+
+# Talos configuration files
+controlplane.yaml
+talosconfig
+worker.yaml
