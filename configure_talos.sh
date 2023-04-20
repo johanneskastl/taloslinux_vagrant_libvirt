@@ -48,33 +48,39 @@ echo "IP of worker-01 is ${IP_WORKER_01}"
 ##################################################################
 #
 #
-read -p "Please provide a free IP in the same range to use as a virtual IP (or type 'q' to quit):" -r
-echo
-
-[[ "$REPLY" == "q" ]] && {
-    echo "User decided to quit"
-    exit 0
-}
-
-[[ -z "$REPLY" ]] && {
-    echo "No IP address provided, aborting"
-    exit 3
-}
-
-VALID_IP_REGEX='(^([1-9]|[1-9][0-9]|[1][0-9][0-9]|[2][0-4][0-9]|[2][5][0-5])\.([0-9]|[1-9][0-9]|[1][0-9][0-9]|[2][0-4][0-9]|[2][5][0-5])\.([0-9]|[1-9][0-9]|[1][0-9][0-9]|[2][0-4][0-9]|[2][5][0-5])\.([0-9]|[1-9][0-9]|[1][0-9][0-9]|[2][0-4][0-9]|[2][5][0-5]))$'
-if [[ "$REPLY" =~ $VALID_IP_REGEX ]]
+if [[ -e controlplane.yaml ]]
 then
-    VIRTUAL_IP="$REPLY"
+    echo "Configuration was already generated"
 else
-    echo "$REPLY does not look like a valid IP address..."
+    read -p "Please provide a free IP in the same range to use as a virtual IP (or type 'q' to quit):" -r
+    echo
+
+    [[ "$REPLY" == "q" ]] && {
+        echo "User decided to quit"
+        exit 0
+    }
+
+    [[ -z "$REPLY" ]] && {
+        echo "No IP address provided, aborting"
+        exit 3
+    }
+
+    VALID_IP_REGEX='(^([1-9]|[1-9][0-9]|[1][0-9][0-9]|[2][0-4][0-9]|[2][5][0-5])\.([0-9]|[1-9][0-9]|[1][0-9][0-9]|[2][0-4][0-9]|[2][5][0-5])\.([0-9]|[1-9][0-9]|[1][0-9][0-9]|[2][0-4][0-9]|[2][5][0-5])\.([0-9]|[1-9][0-9]|[1][0-9][0-9]|[2][0-4][0-9]|[2][5][0-5]))$'
+    if [[ "$REPLY" =~ $VALID_IP_REGEX ]]
+    then
+        VIRTUAL_IP="$REPLY"
+    else
+        echo "$REPLY does not look like a valid IP address..."
+    fi
+
+    echo "Generating config"
+    talosctl gen config talos_vagrant_libvirt https://"${VIRTUAL_IP}":6443 --install-disk /dev/vda || exit 7
+    echo "Configuration generated successfully"
 fi
 
 ##################################################################
 #
 #
-echo "Generating config"
-[[ -e controlplane.yaml ]] || talosctl gen config talos_vagrant_libvirt https://"${VIRTUAL_IP}":6443 --install-disk /dev/vda || exit 7
-
 [[ -e worker.yaml ]]  || {
     echo "worker.yaml does not exist, aborting"
     exit 11
