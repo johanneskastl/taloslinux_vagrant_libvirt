@@ -1,5 +1,16 @@
 #!/bin/bash
 
+##################################################################
+#
+#
+command -v talosctl >/dev/null 2>&1 || {
+    echo >&2 "talosctl (https://github.com/siderolabs/talos) is not installed. Aborting."
+    exit 1
+}
+
+##################################################################
+#
+#
 get_ip() {
     virsh domifaddr "$1" | awk '/ipv4/ {print $4}' | awk -F'/' '{print $1}'
 }
