@@ -152,8 +152,19 @@ then
     sleep 300
 fi
 
-talosctl -n "${VIRTUAL_IP}" kubeconfig ./kubeconfig || exit 41
+##################################################################
+#
+#
+if [[ -e ./kubeconfig ]]
+then
+    echo "./kubeconfig already present"
+else
+    talosctl -n "${VIRTUAL_IP}" kubeconfig ./kubeconfig || exit 41
+fi
 
+echo ""
+echo "##################################################################"
+echo ""
 kubectl --kubeconfig ./kubeconfig get nodes -w
 
 exit 0
