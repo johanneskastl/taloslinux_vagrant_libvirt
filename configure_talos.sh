@@ -74,7 +74,10 @@ else
     else
         echo "$REPLY does not look like a valid IP address..."
     fi
+fi
 
+if ! { [[ -e talosconfig ]] && [[ -e controlplane.yaml ]]  && [[ -e worker.yaml ]] ; }
+then
     echo "Generating config"
     talosctl gen config talos_vagrant_libvirt https://"${VIRTUAL_IP}":6443 --install-disk /dev/vda || exit 7
     echo "Configuration generated successfully"
