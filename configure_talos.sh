@@ -48,9 +48,10 @@ echo "IP of worker-01 is ${IP_WORKER_01}"
 ##################################################################
 #
 #
-if [[ -e controlplane.yaml ]]
+if [[ -e .user_supplied_virtual_ip ]]
 then
     echo "Configuration was already generated"
+    VIRTUAL_IP="$(cat .user_supplied_virtual_ip)"
 else
     read -p "Please provide a free IP in the same range to use as a virtual IP (or type 'q' to quit):" -r
     echo
@@ -69,6 +70,7 @@ else
     if [[ "$REPLY" =~ $VALID_IP_REGEX ]]
     then
         VIRTUAL_IP="$REPLY"
+        echo "${VIRTUAL_IP}" > .user_supplied_virtual_ip
     else
         echo "$REPLY does not look like a valid IP address..."
     fi
