@@ -13,3 +13,6 @@ worker.yaml
 .configuration_applied_on_first_node
 .first_node_bootstrapped
 .user_supplied_virtual_ip
+
+# kubeconfig for the cluster
+kubeconfig
