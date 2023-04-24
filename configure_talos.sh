@@ -120,8 +120,24 @@ else
     talosctl -n "${IP_CONTROLPLANE_01}" apply-config --insecure --file controlplane.yaml || exit 21
     touch .configuration_applied_on_first_node
     echo "Configuration applied..."
-    echo "Sleeping 100s"
-    sleep 100
+    echo "Sleeping 60s"
+    sleep 60
+    while true
+    do
+        read -r -p "Should we proceed (or should we wait a little longer)? " yn
+        case $yn in
+            [Yy]* )
+                break
+                ;;
+            [Nn]* )
+                echo "Sleeping 60s"
+                sleep 60
+                ;;
+            * )
+                echo "Please answer yes or no."
+                ;;
+        esac
+    done
 fi
 
 ##################################################################
@@ -139,8 +155,24 @@ else
     talosctl -n "${IP_CONTROLPLANE_01}" bootstrap || exit 23
     touch .first_node_bootstrapped
     echo "Bootstrapping successful"
-    echo "Sleeping 100s"
-    sleep 100
+    echo "Sleeping 60s"
+    sleep 60
+    while true
+    do
+        read -r -p "Should we proceed (or should we wait a little longer)? " yn
+        case $yn in
+            [Yy]* )
+                break
+                ;;
+            [Nn]* )
+                echo "Sleeping 60s"
+                sleep 60
+                ;;
+            * )
+                echo "Please answer yes or no."
+                ;;
+        esac
+    done
 fi
 
 ##################################################################
@@ -155,6 +187,22 @@ then
     touch .configuration_applied_to_all_nodes
     echo "Sleeping 300s"
     sleep 300
+    while true
+    do
+        read -r -p "Should we proceed (or should we wait a little longer)? " yn
+        case $yn in
+            [Yy]* )
+                break
+                ;;
+            [Nn]* )
+                echo "Sleeping 60s"
+                sleep 60
+                ;;
+            * )
+                echo "Please answer yes or no."
+                ;;
+        esac
+    done
 fi
 
 ##################################################################
