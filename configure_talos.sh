@@ -185,8 +185,8 @@ then
     talosctl -n "${IP_CONTROLPLANE_03}" apply-config --insecure --file controlplane.yaml || exit 33
     talosctl -n "${IP_WORKER_01}" apply-config --insecure --file worker.yaml || exit 35
     touch .configuration_applied_to_all_nodes
-    echo "Sleeping 300s"
-    sleep 300
+    echo "Sleeping 180s"
+    sleep 180
     while true
     do
         read -r -p "Should we proceed (or should we wait a little longer)? " yn
