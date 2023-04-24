@@ -220,6 +220,6 @@ fi
 echo ""
 echo "##################################################################"
 echo ""
-kubectl --kubeconfig ./kubeconfig get nodes -w
+kubectl --kubeconfig ./kubeconfig get nodes
 
 exit 0
