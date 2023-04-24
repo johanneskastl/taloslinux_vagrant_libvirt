@@ -203,6 +203,8 @@ then
                 ;;
         esac
     done
+else
+    echo "Configuration was already applied to all nodes"
 fi
 
 ##################################################################
