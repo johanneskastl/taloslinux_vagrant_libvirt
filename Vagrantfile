@@ -22,7 +22,7 @@ Vagrant.configure("2") do |config|
         lv.memory = 2048
         lv.cpus = 2
         lv.serial :type => "file", :source => {:path => "/tmp/talos-controlplane-0#{i}.log"}
-        lv.storage :file, :device => :cdrom, :path => "/home/VIRTUELLE_MASCHINEN/KVM_ISO_IMAGES/talos-amd64.iso"
+        lv.storage :file, :device => :cdrom, :path => "/tmp/talos-amd64.iso"
         lv.storage :file, :size => '4G', :type => 'raw'
         lv.boot 'hd'
         lv.boot 'cdrom'
@@ -48,7 +48,7 @@ Vagrant.configure("2") do |config|
         lv.memory = 1024
         lv.cpus = 1
         lv.serial :type => "file", :source => {:path => "/tmp/talos-worker-0#{i}.log"}
-        lv.storage :file, :device => :cdrom, :path => "/home/VIRTUELLE_MASCHINEN/KVM_ISO_IMAGES/talos-amd64.iso"
+        lv.storage :file, :device => :cdrom, :path => "/tmp/talos-amd64.iso"
         lv.storage :file, :size => '4G', :type => 'raw'
         lv.boot 'hd'
         lv.boot 'cdrom'
