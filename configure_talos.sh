@@ -178,7 +178,7 @@ fi
 ##################################################################
 #
 #
-if [[ -e .configuration_applied_to_all_nodes ]]
+if ! [[ -e .configuration_applied_to_all_nodes ]]
 then
     echo "Configure other nodes"
     talosctl -n "${IP_CONTROLPLANE_02}" apply-config --insecure --file controlplane.yaml || exit 31
