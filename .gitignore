@@ -11,6 +11,7 @@ worker.yaml
 
 # helper files for configuration script
 .configuration_applied_on_first_node
+.configuration_applied_to_all_nodes
 .first_node_bootstrapped
 .user_supplied_virtual_ip
 
