@@ -102,7 +102,10 @@ fi
 }
 
 # add interface with vip to controlplane.yml
-grep -q "ip: ${VIRTUAL_IP}" controlplane.yaml || (patch controlplane.yaml < controlplane.yaml.patch || exit 9)
+grep -q "ip: ${VIRTUAL_IP}" controlplane.yaml || {
+    patch controlplane.yaml < controlplane.yaml.patch || exit 9
+    sed -i "/ip:/ s/VIRTUAL_IP/${VIRTUAL_IP}/g" controlplane.yaml || exit 10
+}
 
 grep -q "ip: ${VIRTUAL_IP}" controlplane.yaml || {
     echo "Patching was not successful, aborting"
