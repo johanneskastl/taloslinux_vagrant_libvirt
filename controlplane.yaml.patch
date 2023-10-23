@@ -1,6 +1,6 @@
 --- controlplane.yaml	2023-04-19 20:34:26.493063995 +0200
 +++ controlplane.yaml.MODIFIED	2023-04-19 20:36:40.424347769 +0200
-@@ -53,7 +53,14 @@
+@@ -53,7 +53,15 @@
          #         - '!10.0.0.3/32'
          #         - fdc7::/16
      # Provides machine specific network configuration options.
