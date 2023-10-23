@@ -45,8 +45,8 @@ Vagrant.configure("2") do |config|
     config.vm.define "talos-worker-0#{i}" do |node|
       node.vm.provider "libvirt" do |lv|
         lv.random_hostname = false
-        lv.memory = 1024
-        lv.cpus = 1
+        lv.memory = 4096
+        lv.cpus = 2
         lv.serial :type => "file", :source => {:path => "/tmp/talos-worker-0#{i}.log"}
         lv.storage :file, :device => :cdrom, :path => "/tmp/talos-amd64.iso"
         lv.storage :file, :size => '10G', :type => 'raw'
