@@ -7,7 +7,8 @@
 -    network: {}
 +    network:
 +      interfaces:
-+        - interface: eth0
++        - deviceSelector:
++            busPath: "0*"
 +          dhcp: true
 +          vip:
 +            ip: VIRTUAL_IP
@@ -15,4 +16,4 @@
 +    # network: {}
      # # `interfaces` is used to define the network interface configuration.
      # interfaces:
-     #     - interface: eth0 # The interface name.
+     #     - interface: enp0s1 # The interface name.
