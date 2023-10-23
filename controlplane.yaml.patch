@@ -10,7 +10,7 @@
 +        - interface: eth0
 +          dhcp: true
 +          vip:
-+            ip: 192.168.121.11
++            ip: VIRTUAL_IP
 +
 +    # network: {}
      # # `interfaces` is used to define the network interface configuration.
