@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
         lv.cpus = 2
         lv.serial :type => "file", :source => {:path => "/tmp/talos-controlplane-0#{i}.log"}
         lv.storage :file, :device => :cdrom, :path => "/tmp/talos-amd64.iso"
-        lv.storage :file, :size => '4G', :type => 'raw'
+        lv.storage :file, :size => '10G', :type => 'raw'
         lv.boot 'hd'
         lv.boot 'cdrom'
       end
@@ -49,7 +49,7 @@ Vagrant.configure("2") do |config|
         lv.cpus = 1
         lv.serial :type => "file", :source => {:path => "/tmp/talos-worker-0#{i}.log"}
         lv.storage :file, :device => :cdrom, :path => "/tmp/talos-amd64.iso"
-        lv.storage :file, :size => '4G', :type => 'raw'
+        lv.storage :file, :size => '10G', :type => 'raw'
         lv.boot 'hd'
         lv.boot 'cdrom'
       end # libvirt
